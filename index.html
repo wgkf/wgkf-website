@@ -1,0 +1,2097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>West Bengal Goju-Ryu Karate-Do Foundation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Libre+Baskerville&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+/* ================= THEME VARIABLES ================= */
+:root {
+  /* Day theme (default) */
+  --bg-main: #f5f1e8;
+  --bg-soft: #fdfbf7;
+  --bg-dark: #1c1c1c;
+
+  --text-main: #1c1c1c;
+  --text-soft: #444;
+  --text-invert: #ffffff;
+
+  --accent-primary: #7a1e1e;
+  --accent-gold: #b48c3c;
+
+  --border-soft: #e0dccf;
+}
+
+/* ================= NIGHT THEME ================= */
+body.night {
+  --bg-main: #121212;
+  --bg-soft: #1a1a1a;
+  --bg-dark: #000000;
+
+  --text-main: #e6e6e6;
+  --text-soft: #bdbdbd;
+  --text-invert: #ffffff;
+
+  --accent-primary: #b84a4a; /* softened red */
+  --accent-gold: #c9a14a;
+
+  --border-soft: #2a2a2a;
+}
+
+
+/* ================= BASE ================= */
+body {
+  margin: 0;
+  font-family: 'Libre Baskerville', serif;
+  color: var(--text-main);
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(160, 30, 30, 0.06),
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 85% 70%,
+      rgba(180, 140, 60, 0.10),
+      transparent 50%
+    ),
+    linear-gradient(
+      180deg,
+      #f8f3e7 0%,
+      #f5f1e8 45%,
+      #efe6d4 100%
+    );
+}
+/* ================= NIGHT BACKGROUND OVERRIDE ================= */
+body.night {
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(180, 90, 90, 0.06),
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 85% 70%,
+      rgba(200, 160, 80, 0.08),
+      transparent 50%
+    ),
+    linear-gradient(
+      180deg,
+      #111111 0%,
+      #161616 45%,
+      #1b1b1b 100%
+    );
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+/* ================= HEADER ================= */
+.top-bar {
+  background: #7a1e1e;
+  color: #fff;
+  padding: 20px 0;
+}
+
+/* Header layout (matches HTML exactly) */
+.header-inner {
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Logo (no background, no shadow, controlled size) */
+.logo-wrap img {
+  height: 100px;      /* safe, balanced */
+  width: auto;
+  display: block;
+}
+
+/* Header text (unchanged design) */
+.org-name h1 {
+  font-family: 'Cinzel', serif;
+  margin: 0;
+  font-size: 28px;
+}
+
+.org-name p {
+  margin: 4px 0 0;
+  font-size: 14px;
+  opacity: 0.9;
+}
+.theme-toggle {
+  margin-left: auto;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.4);
+  color: #fff;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+body.night .theme-toggle i::before {
+  content: "\f185"; /* sun icon */
+}
+
+/* ================= NAVIGATION ================= */
+.main-nav {
+  background: #1c1c1c;
+}
+
+.menu-toggle {
+  display: none;
+  width: 100%;
+  padding: 14px;
+  background: #1c1c1c;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* ===== MAIN MENU ===== */
+.menu {
+  list-style: none;
+  margin: 0 auto;              /* keeps it aligned to content width */
+  padding: 0 20px;             /* matches .container / .section-inner */
+  max-width: 1100px;           /* same as content */
+  display: flex;
+  justify-content: flex-start; /* LEFT aligned */
+  position: relative;
+}
+
+
+.main-nav a {
+  color: #fff;
+  padding: 14px 20px;
+  text-decoration: none;
+  display: block;
+  position: relative;
+}
+
+.main-nav a:hover {
+  background: #7a1e1e;
+}
+
+/* ===== SUBMENU ===== */
+.has-sub {
+  position: relative;
+}
+
+.sub {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #1c1c1c;
+  min-width: 220px;
+  display: none;
+  list-style: none;
+  padding: 6px 0;
+  z-index: 1000;
+}
+
+.sub li a {
+  padding: 10px 18px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.sub li a:hover {
+  background: #7a1e1e;
+}
+
+/* Desktop hover */
+@media (min-width: 769px) {
+  .has-sub:hover > .sub {
+    display: block;
+  }
+}
+
+/* Mobile menu */
+@media (max-width: 768px) {
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .menu {
+    flex-direction: column;
+    display: none;
+  }
+
+  .menu.show {
+    display: flex;
+  }
+
+  .has-sub > a::after {
+    content: " ▾";
+    font-size: 12px;
+    opacity: 0.7;
+  }
+
+  .sub {
+    position: static;
+    background: #2a2a2a;
+    display: none;
+  }
+
+  .has-sub.open > .sub {
+    display: block;
+  }
+
+  .sub li a {
+    padding-left: 30px;
+  }
+}
+
+/* ================= HERO ================= */
+.hero {
+  height: 60vh;
+  background: url('https://raw.githubusercontent.com/wgkf/home/main/header1.png')
+    center / cover no-repeat;
+  position: relative;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.hero h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 36px;
+  max-width: 820px;
+}
+
+.hero p {
+  margin-top: 10px;
+  letter-spacing: 2px;
+}
+
+/* ================= INTRO ================= */
+.intro blockquote {
+  font-style: italic;
+  border-left: 4px solid #7a1e1e;
+  padding-left: 15px;
+  margin-left: 0;
+}
+
+/* ================= AFFILIATION ================= */
+.affiliation {
+  background: rgba(253, 251, 247, 0.9);
+  border-left: 5px solid #7a1e1e;
+  padding: 24px;
+  margin: 40px 0;
+  font-size: 15px;
+}
+
+/* ================= SECTION INNER ================= */
+.section-inner {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+/* ================= WHY GOJU-RYU ================= */
+.why-goju.editorial {
+  background: rgba(253, 251, 247, 0.9);
+  border-top: 1px solid #e6e0d3;
+  border-bottom: 1px solid #e6e0d3;
+  padding: 70px 0;
+}
+
+.why-goju h2 {
+  font-family: 'Cinzel', serif;
+  color: var(--accent-primary);
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+
+.section-divider {
+  display: block;
+  width: 120px;
+  height: 2px;
+  margin-bottom: 32px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #b48c3c,
+    transparent
+  );
+}
+
+.why-goju .lead {
+  font-size: 17px;
+  line-height: 1.9;
+  max-width: 820px;
+  margin-bottom: 22px;
+}
+
+.why-goju p {
+  max-width: 820px;
+  font-size: 15.5px;
+  line-height: 1.8;
+  margin-bottom: 18px;
+  color: #2b2b2b;
+}
+
+/* ================= WHY GOJU-RYU – PHILOSOPHICAL QUOTE ================= */
+.why-goju blockquote {
+  position: relative;
+  max-width: 760px;
+  margin: 32px auto;
+  padding: 22px 28px;
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #3a2a12;
+  background: linear-gradient(
+    180deg,
+    rgba(180, 140, 60, 0.10),
+    rgba(253, 251, 247, 0.95)
+  );
+  border-left: none;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Decorative quote mark */
+.why-goju blockquote::before {
+  content: "“";
+  position: absolute;
+  top: -14px;
+  left: 18px;
+  font-size: 52px;
+  line-height: 1;
+  color: rgba(180, 140, 60, 0.45);
+  font-family: 'Cinzel', serif;
+}
+
+/* Decorative bottom rule */
+.why-goju blockquote::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 2px;
+  margin-top: 16px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #b48c3c,
+    transparent
+  );
+}
+@media (max-width: 768px) {
+
+  .why-goju blockquote {
+    font-size: 14.5px;
+    padding: 18px 20px;
+    margin: 24px auto;
+  }
+
+  .why-goju blockquote::before {
+    font-size: 42px;
+    top: -10px;
+  }
+
+}
+
+
+.why-goju .closing {
+  margin-top: 28px;
+  font-weight: 500;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .why-goju.editorial {
+    padding: 50px 0;
+  }
+
+  .why-goju h2 {
+    font-size: 24px;
+  }
+
+  .why-goju .lead {
+    font-size: 16px;
+  }
+}
+/* ================= WHY GOJU-RYU – DESKTOP BACKGROUND CONTAINMENT ================= */
+@media (min-width: 992px) {
+
+  .why-goju.editorial {
+    max-width: 1100px;        /* same as container */
+    margin: 0px auto;        /* centers the section */
+    padding: 10px 40px;       /* inner breathing space */
+    box-sizing: border-box;
+  }
+
+}
+/* ================= WHY GOJU-RYU – DESKTOP CONTENT BALANCE ================= */
+@media (min-width: 992px) {
+
+  .why-goju .lead,
+  .why-goju p,
+  .why-goju blockquote,
+  .why-goju .closing {
+    max-width: 960px;        /* wider, but controlled */
+    margin-left: auto;      /* center the column */
+    margin-right: auto;
+  }
+
+  .why-goju blockquote {
+    max-width: 900px;       /* quote slightly tighter */
+  }
+
+}
+
+/* ================= WHY GOJU-RYU – MOBILE REFINEMENT ================= */
+@media (max-width: 768px) {
+
+  .why-goju.editorial {
+    padding: 32px 0;   /* reduced from 50 */
+  }
+
+  .why-goju h2 {
+    font-size: 22px;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+
+  .section-divider {
+    width: 90px;
+    margin-bottom: 20px;
+  }
+
+  .why-goju .lead {
+    font-size: 15.5px;
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+
+  .why-goju p {
+    font-size: 14.5px;
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+
+  .why-goju blockquote {
+    font-size: 14.5px;
+    margin: 18px 0;
+    padding-left: 14px;
+    border-left-width: 3px;
+  }
+
+  .why-goju .closing {
+    font-size: 14.5px;
+    margin-top: 18px;
+  }
+
+}
+@media (max-width: 768px) {
+  .why-goju h2 {
+    margin-top: 0;
+  }
+}
+@media (max-width: 768px) {
+  .why-goju .container {
+    padding-top: 16px;   /* was ~40px */
+  }
+}
+@media (max-width: 768px) {
+  .why-goju.editorial {
+    padding-top: 20px;   /* was 32px */
+  }
+}
+/* ================= WHY GOJU-RYU – MOBILE BOTTOM SPACING FIX ================= */
+@media (max-width: 768px) {
+
+  /* Reduce section bottom padding */
+  .why-goju.editorial {
+    padding-bottom: 20px;   /* reduced */
+  }
+
+  /* Reduce container bottom padding */
+  .why-goju .container {
+    padding-bottom: 16px;  /* reduced */
+  }
+
+  /* Remove extra margin from last content line */
+  .why-goju .closing {
+    margin-bottom: 0;
+  }
+
+}
+
+/* ================= WHY GOJU-RYU – TEXT JUSTIFICATION (DESKTOP) ================= */
+.why-goju .lead,
+.why-goju p,
+.why-goju blockquote,
+.why-goju .closing {
+  text-align: justify;
+  text-justify: inter-word;
+}
+/* ================= WHY GOJU-RYU – MOBILE JUSTIFIED & SMOOTH ================= */
+@media (max-width: 768px) {
+  .why-goju .lead,
+  .why-goju p,
+  .why-goju blockquote,
+  .why-goju .closing {
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+  }
+}
+
+
+/* ================= PILLARS (Traditional Lineage) ================= */
+.pillars {
+  background: transparent;
+  padding: 60px 0;
+}
+
+.pillars .section-inner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.pillar {
+  background:#fdfbf7;
+  border: 1px solid var(--border-soft);
+  padding: 24px;
+}
+
+.pillar h3 {
+  font-family: 'Cinzel', serif;
+ color: var(--accent-primary);
+
+}
+
+
+/* ================= GOVERNANCE ================= */
+.governance {
+  background: var(--bg-soft);
+}
+
+.governance ul {
+  list-style: square;
+  padding-left: 20px;
+}
+
+.governance h2 {
+  font-family: 'Cinzel', serif;
+  margin-bottom: 16px;
+}
+
+.governance ul li {
+  margin-bottom: 8px;
+}
+
+.governance a {
+  display: inline-block;
+  margin-top: 12px;
+  color: var(--accent-primary);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* ================= FOUNDER – FINAL LOCK ================= */
+.founder {
+  position: relative;
+  padding: 90px 20px;
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(180, 140, 60, 0.35),
+      rgba(248, 243, 231, 0.95) 55%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(180, 140, 60, 0.25),
+      rgba(248, 243, 231, 0.9)
+    );
+  border-top: 2px solid rgba(180, 140, 60, 0.6);
+  border-bottom: 2px solid rgba(180, 140, 60, 0.6);
+  box-sizing: border-box;
+}
+
+.founder-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Decorative frame now follows content width */
+.founder::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 32px;
+  bottom: 32px;
+  width: min(900px, calc(100% - 40px));
+  border: 1px solid rgba(180, 140, 60, 0.35);
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+
+/* ================= TEXT ================= */
+.founder h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 34px;
+ color: var(--accent-primary);
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.founder h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 22px;
+  text-align: center;
+  color: #3a2a12;
+  margin-bottom: 24px;
+}
+
+/* ornamental divider */
+.founder h3::after {
+  content: "";
+  display: block;
+  width: 120px;
+  height: 2px;
+  margin: 16px auto 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #b48c3c,
+    transparent
+  );
+}
+
+.founder p {
+  max-width: 820px;
+  margin: auto;
+  font-size: 16px;
+  line-height: 1.8;
+  text-align: center;
+  color: #2b2b2b;
+}
+
+/* ================= FOUNDER – DESKTOP CONTAINMENT ================= */
+@media (min-width: 992px) {
+
+  .founder {
+    max-width: 1100px;   /* same as container */
+    margin: 80px auto;   /* centers the section */
+    padding: 90px 40px;  /* matches desktop spacing */
+    border-radius: 4px;  /* subtle refinement (optional) */
+  }
+
+}
+/* ================= FOUNDER PHOTO ================= */
+.founder-photo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 26px;
+}
+
+.founder-photo img {
+  width: 160px;
+  height: auto;
+  border-radius: 4px;
+  filter: grayscale(100%);
+  border: 2px solid rgba(180, 140, 60, 0.6);
+  padding: 4px;
+  background: #fdfbf7;
+}
+
+/* Mobile refinement */
+@media (max-width: 768px) {
+  .founder-photo img {
+    width: 120px;
+  }
+}
+
+/* ================= TECHNICAL GUIDANCE ================= */
+.guidance {
+ background: var(--bg-soft);
+}
+
+/* ================= ACTIVITIES & EVENTS ================= */
+.activities {
+  background: transparent;
+  padding: 60px 0;
+  text-align: center;
+}
+
+.activities .section-inner {
+  background:#fdfbf7;
+  border: 1px solid var(--border-soft);
+  padding: 40px 20px;
+}
+
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.activity-card {
+  border: 1px solid #ccc;
+  padding: 40px;
+  font-weight: bold;
+}
+
+/* ================= NOTICES ================= */
+.notices {
+  background:  #fdfbf7;
+}
+
+.notice-item {
+  border-left: 3px solid #7a1e1e;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+}
+
+.notice-item time {
+  font-weight: bold;
+  margin-right: 6px;
+}
+
+.notices a {
+  color: var(--accent-primary);
+  font-weight: bold;
+  text-decoration: none;
+}
+/* ================= STATISTICS ================= */
+.statistics {
+  background: transparent;  /* 🔑 KEY FIX */
+  border-top: 1px solid #e6e0d3;
+  border-bottom: 1px solid #e6e0d3;
+  padding: 70px 20px;
+}
+
+.statistics .section-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.statistics h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 30px;
+  margin-bottom: 12px;
+  color: var(--accent-primary);
+}
+
+.stats-subtitle {
+  max-width: 720px;
+  margin: 0 auto 45px;
+  font-size: 15px;
+  color: #444;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.stat-box {
+  background:  #fdfbf7; /* 🔑 blends with section */
+  border: 1px solid var(--border-soft);
+  padding: 34px 22px;
+}
+
+.stat-number {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 36px;              /* slightly stronger */
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #1c1c1c;
+}
+
+.stat-label {
+  display: block;
+  margin-top: 6px;
+  font-size: 13.5px;            /* refined, not bold */
+  letter-spacing: 0.6px;
+  text-transform: uppercase;   /* statistical tone */
+  color: #555;
+}
+
+/* ================= STATISTICS – MOBILE FIX ================= */
+@media (max-width: 576px) {
+
+  .statistics {
+    padding: 50px 16px; /* tighter but still padded */
+  }
+
+  .statistics h2 {
+    font-size: 24px;
+  }
+
+  .stats-subtitle {
+    font-size: 14px;
+    margin-bottom: 32px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr; /* single column */
+    gap: 16px;
+  }
+
+  .stat-box {
+    padding: 22px 18px; /* compact card */
+  }
+
+  .stat-number {
+    font-size: 30px;    /* reduce dominance */
+    letter-spacing: 0.4px;
+  }
+
+  .stat-label {
+    font-size: 12.5px;
+    letter-spacing: 0.5px;
+  }
+}
+
+/* ================= FOOTER ================= */
+footer {
+  background: #1c1c1c;
+  color: #ccc;
+  text-align: center;
+  padding: 24px;
+  font-size: 14px;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+
+  .header-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .logo-wrap img {
+    height: 160px;
+  }
+
+  .hero h2 {
+    font-size: 22px;
+  }
+
+  .pillars .section-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .activity-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* ================= UNIFIED DESKTOP WIDTH ================= */
+@media (min-width: 992px) {
+
+  .governance.container,
+  .guidance.container,
+  .notices.container,
+  .activities .section-inner {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+  }
+
+}
+/* ================= FOOTER (PROFESSIONAL) ================= */
+.site-footer {
+  background: #1c1c1c;
+  color: #ccc;
+  margin-top: 50px;
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: auto;
+  padding: 50px 20px;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 40px;
+  align-items: start;   /* 🔑 CRITICAL FIX */
+}
+.footer-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* desktop alignment */
+}
+
+/* ================= FOOTER DESKTOP ALIGNMENT FIX ================= */
+
+/* Left column (address) */
+.footer-block:first-child {
+  align-items: flex-start;
+  text-align: left;
+}
+
+/* Right column (social icons) */
+.footer-block:last-child {
+  align-items: flex-end;   /* 🔑 moves content to the right */
+  text-align: right;
+}
+
+/* Push social icons to the right edge */
+.footer-block:last-child .footer-social {
+  justify-content: flex-end;
+}
+
+.footer-block h4 {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  color: #f5f1e8;
+  margin-bottom: 12px;
+}
+
+.footer-block p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 6px 0;
+}
+
+.footer-email {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.footer-email i {
+  margin-right: 8px;
+  color: #b48c3c;
+}
+
+/* Social Icons */
+.footer-social {
+  display: flex;
+  gap: 14px;
+  margin-top: 12px;
+  align-items: center;
+}
+
+
+/* ================= SOCIAL ICON BRAND COLORS ================= */
+
+/* Default (neutral) */
+.footer-social a {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ccc;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  background: transparent;
+}
+
+/* Facebook */
+.footer-social a[aria-label="Facebook"]:hover {
+  background: #1877F2;
+  border-color: #1877F2;
+  color: #fff;
+}
+
+/* Instagram */
+.footer-social a[aria-label="Instagram"]:hover {
+  background: linear-gradient(
+    45deg,
+    #f09433,
+    #e6683c,
+    #dc2743,
+    #cc2366,
+    #bc1888
+  );
+  border-color: #dc2743;
+  color: #fff;
+}
+
+/* Telegram */
+.footer-social a[aria-label="Telegram"]:hover {
+  background: #229ED9;
+  border-color: #229ED9;
+  color: #fff;
+}
+
+/* WhatsApp */
+.footer-social a[aria-label="WhatsApp"]:hover {
+  background: #25D366;
+  border-color: #25D366;
+  color: #fff;
+}
+
+/* Email */
+.footer-social a[aria-label="Email"]:hover {
+  background: #7a1e1e; /* matches site identity */
+  color: var(--accent-primary);
+  color: #fff;
+}
+
+.footer-social a:hover {
+  background: #7a1e1e;
+  color: var(--accent-primary);
+  color: #fff;
+}
+
+/* Bottom strip */
+.footer-bottom {
+  border-top: 1px solid #333;
+  text-align: center;
+  padding: 16px 10px;
+  font-size: 13px;
+  color: #aaa;
+}
+@media (min-width: 992px) {
+  .footer-inner {
+    padding: 10px 20px; /* reduced from 50px */
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .footer-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer-block {
+    align-items: center;
+  }
+
+  .footer-social {
+    justify-content: center;
+  }
+}
+/* ================= FOOTER – MOBILE OPTIMIZATION ================= */
+@media (max-width: 768px) {
+
+  .site-footer {
+    margin-top: 0px; /* tighter than desktop */
+  }
+
+  .footer-inner {
+    padding: 28px 16px; /* reduced vertical padding */
+    gap: 24px;          /* tighter column spacing */
+  }
+
+}
+@media (max-width: 768px) {
+
+  .footer-block h4 {
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+
+  .footer-block p {
+    font-size: 13.5px;
+    margin: 3px 0;
+  }
+
+  .footer-email {
+    margin-top: 6px;
+  }
+  @media (max-width: 768px) {
+
+  .footer-social a {
+    width: 36px;
+    height: 36px;
+    font-size: 15px;
+  }
+
+}
+@media (max-width: 768px) {
+
+  .footer-bottom {
+    padding: 12px 8px;
+    font-size: 12.5px;
+  }
+
+}
+
+
+}
+
+/* =====================================================
+   MOBILE-FIRST REFINEMENTS (NON-DESTRUCTIVE)
+   ===================================================== */
+
+/* ---------- HEADER ---------- */
+@media (max-width: 768px) {
+
+  .top-bar {
+    padding: 14px 0;
+  }
+
+  .logo-wrap img {
+    height: 120px; /* reduce from 160 */
+  }
+
+  .org-name h1 {
+    font-size: 20px;
+    line-height: 1.3;
+  }
+
+  .org-name p {
+    font-size: 13px;
+  }
+}
+
+/* ---------- NAVIGATION (TOUCH FRIENDLY) ---------- */
+@media (max-width: 768px) {
+
+  .main-nav a {
+    padding: 16px 20px; /* bigger tap area */
+    font-size: 15px;
+  }
+
+  .sub li a {
+    padding: 14px 30px;
+    font-size: 14px;
+  }
+}
+
+/* ---------- HERO ---------- */
+@media (max-width: 768px) {
+
+  .hero {
+    height: 48vh; /* reduce visual dominance */
+  }
+
+  .hero h2 {
+    font-size: 20px;
+    line-height: 1.4;
+  }
+
+  .hero p {
+    font-size: 13px;
+    letter-spacing: 1px;
+  }
+}
+
+/* ---------- INTRO TEXT ---------- */
+@media (max-width: 768px) {
+
+  .intro.container {
+    padding: 28px 16px;
+  }
+
+  .intro p {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .intro blockquote {
+    font-size: 14px;
+  }
+}
+
+/* ---------- PILLARS ---------- */
+@media (max-width: 768px) {
+
+  .pillar {
+    padding: 20px;
+  }
+
+  .pillar h3 {
+    font-size: 18px;
+  }
+
+  .pillar p {
+    font-size: 14.5px;
+  }
+}
+
+/* ---------- ORGANISATION / GOVERNANCE ---------- */
+@media (max-width: 768px) {
+
+  .governance.container {
+    padding: 32px 16px;
+  }
+
+  .governance h2 {
+    font-size: 22px;
+  }
+
+  .governance ul li {
+    font-size: 14.5px;
+  }
+}
+
+/* ---------- FOUNDER SECTION ---------- */
+@media (max-width: 768px) {
+
+  .founder {
+    padding: 50px 16px; /* reduced from 90 */
+  }
+
+  .founder h2 {
+    font-size: 24px;
+  }
+
+  .founder h3 {
+    font-size: 18px;
+  }
+
+  .founder p {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .founder::before {
+    top: 20px;
+    bottom: 20px;
+  }
+}
+
+/* ---------- GUIDANCE ---------- */
+@media (max-width: 768px) {
+
+  .guidance.container {
+    padding: 32px 16px;
+  }
+
+  .guidance h2 {
+    font-size: 22px;
+  }
+
+  .guidance p {
+    font-size: 15px;
+  }
+}
+
+/* ---------- ACTIVITIES ---------- */
+@media (max-width: 768px) {
+
+  .activity-card {
+    padding: 28px 20px;
+    font-size: 15px;
+  }
+}
+
+/* ---------- NOTICES ---------- */
+@media (max-width: 768px) {
+
+  .notices.container {
+    padding: 32px 16px;
+  }
+
+  .notice-item {
+    font-size: 14.5px;
+    line-height: 1.6;
+  }
+}
+/* ===== FIX GAP BETWEEN AFFILIATION & PILLARS ===== */
+@media (max-width: 768px) {
+
+  .affiliation {
+    margin-bottom: 15px; /* was 40px */
+  }
+
+}
+@media (max-width: 768px) {
+
+  .pillars {
+    padding-top: 25px;  /* was 60px */
+    padding-bottom: 40px;
+  }
+
+}
+/* =====================================================
+   DESKTOP GAP FIX: AFFILIATION → PILLARS
+   ===================================================== */
+
+/* Reduce excessive spacing on desktop */
+@media (min-width: 769px) {
+
+  .affiliation {
+    margin-bottom: 10px; /* was 40px */
+  }
+
+  .pillars {
+    padding-top: 20px;  /* was 60px */
+  }
+
+}
+/* =====================================================
+   MOBILE SPACING AROUND FOUNDER SECTION
+   ===================================================== */
+@media (max-width: 768px) {
+
+  .founder {
+    margin-top: 50px;    /* space before founder */
+    margin-bottom: 50px; /* space after founder */
+  }
+
+}
+/* =====================================================
+   MOBILE TEXT ALIGNMENT FIX – EDITORIAL SECTIONS
+   ===================================================== */
+@media (max-width: 768px) {
+
+  /* Intro section */
+  .intro p,
+  .intro blockquote {
+
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+  }
+
+  /* Founder section */
+  .founder-inner p {
+
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+  }
+
+  /* Technical & Lineage Guidance */
+  .guidance p {
+
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+  }
+
+}
+/* ================= SLIGHT SPACE AFTER EDITORIAL BLOCKS (DESKTOP) ================= */
+@media (min-width: 992px) {
+
+  .why-goju.editorial {
+    margin-bottom: 40px; /* subtle, clean separation */
+  }
+
+}
+/* =====================================================
+   NIGHT MODE — SOOTHING & PREMIUM ENHANCEMENTS
+   (Day design untouched)
+   ===================================================== */
+
+/* ---------- GLOBAL TEXT CALMING ---------- */
+body.night {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Paragraph & body text */
+body.night p,
+body.night li {
+  color: var(--text-main);
+}
+
+/* Secondary text */
+body.night .stats-subtitle,
+body.night .stat-label,
+body.night .org-name p {
+  color: var(--text-soft);
+}
+
+/* ---------- SECTION SURFACES (CARD-LIKE) ---------- */
+body.night .pillar,
+body.night .stat-box,
+body.night .activities .section-inner,
+body.night .notices,
+body.night .guidance,
+body.night .governance {
+  background: var(--bg-soft);
+  border-color: var(--border-soft);
+}
+
+/* Slight depth without glow */
+body.night .pillar,
+body.night .stat-box {
+  box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+}
+
+/* ---------- WHY GOJU-RYU (EDITORIAL) ---------- */
+body.night .why-goju.editorial {
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.02),
+    rgba(0,0,0,0.25)
+  );
+  border-top-color: var(--border-soft);
+  border-bottom-color: var(--border-soft);
+}
+
+body.night .why-goju p {
+  color: var(--text-main);
+}
+
+body.night .why-goju blockquote {
+  background: linear-gradient(
+    180deg,
+    rgba(201,161,74,0.10),
+    rgba(0,0,0,0.35)
+  );
+  color: var(--text-main);
+}
+
+/* Decorative quote softened */
+body.night .why-goju blockquote::before {
+  color: rgba(201,161,74,0.35);
+}
+
+/* ---------- FOUNDER SECTION (CEREMONIAL BUT CALM) ---------- */
+body.night .founder {
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(201,161,74,0.18),
+      rgba(15,15,15,0.95) 60%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(201,161,74,0.14),
+      rgba(15,15,15,0.9)
+    );
+  border-top-color: rgba(201,161,74,0.4);
+  border-bottom-color: rgba(201,161,74,0.4);
+}
+
+body.night .founder::before {
+  border-color: rgba(201,161,74,0.3);
+}
+
+body.night .founder h3 {
+  color: var(--accent-gold);
+}
+
+body.night .founder p {
+  color: var(--text-main);
+}
+
+/* ---------- NAVIGATION REFINEMENT ---------- */
+body.night .main-nav,
+body.night .sub {
+  background: #0f0f0f;
+}
+
+body.night .main-nav a:hover,
+body.night .sub li a:hover {
+  background: rgba(184,74,74,0.35);
+}
+
+/* ---------- HERO OVERLAY (LESS GLARE) ---------- */
+body.night .hero-overlay {
+  background: rgba(0,0,0,0.65);
+}
+
+/* ---------- AFFILIATION STRIP ---------- */
+body.night .affiliation {
+  background: rgba(0,0,0,0.35);
+  border-left-color: var(--accent-gold);
+  color: var(--text-main);
+}
+
+/* ---------- STATISTICS SECTION ---------- */
+body.night .statistics {
+  border-top-color: var(--border-soft);
+  border-bottom-color: var(--border-soft);
+}
+
+body.night .stat-number {
+  color: var(--text-invert);
+}
+
+/* ---------- FOOTER (DEEP & QUIET) ---------- */
+body.night .site-footer {
+  background: #0b0b0b;
+}
+
+body.night .footer-block h4 {
+  color: var(--accent-gold);
+}
+
+body.night .footer-social a {
+  border-color: #333;
+}
+
+body.night .footer-bottom {
+  border-top-color: #222;
+}
+
+/* ---------- THEME TOGGLE FEEDBACK ---------- */
+body.night .theme-toggle {
+  border-color: rgba(201,161,74,0.6);
+  color: var(--accent-gold);
+}
+/* =====================================================
+   THEME TOGGLE — BORDERLESS (ALL VIEWS)
+   ===================================================== */
+.theme-toggle {
+  border: none !important;
+  box-shadow: none;
+}
+
+/* =====================================================
+   MOBILE EDGE-HIDDEN THEME TOGGLE (SIDEBAR STYLE)
+   ===================================================== */
+@media (max-width: 768px) {
+
+  .theme-toggle {
+    position: fixed;
+    top: 16px;
+    right: -44px;                 /* hidden outside screen */
+    z-index: 2000;
+
+    background: rgba(28, 28, 28, 0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    padding: 10px 12px;
+    border-radius: 50%;
+
+    color: #fff;
+
+    transition: right 0.25s ease;
+  }
+
+  /* Reveal when user touches right edge */
+  body.show-theme-toggle .theme-toggle {
+    right: 16px;
+  }
+
+  /* Night refinement */
+  body.night .theme-toggle {
+    background: rgba(0, 0, 0, 0.55);
+    color: var(--accent-gold);
+  }
+}
+
+@media (min-width: 769px) {
+  .has-sub {
+    pointer-events: auto;
+  }
+
+  .has-sub > a {
+    pointer-events: auto;
+  }
+
+  .has-sub:hover > a {
+    background: #7a1e1e;
+  }
+}
+
+
+</style>
+</head>
+
+<body>
+
+<header class="top-bar">
+  <div class="header-inner">
+    <div class="logo-wrap">
+      <img src="https://raw.githubusercontent.com/wgkf/home/main/wgkf%20logo.png" alt="WGKF Logo">
+    </div>
+
+    <div class="org-name">
+      <h1>West Bengal Goju-Ryu Karate-Do Foundation</h1>
+      <div class="divider"></div>
+      <p>Traditional Cum Sports Karate Organisation</p>
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+  <i class="fa-solid fa-moon"></i>
+</button>
+  </div>
+</header>
+
+<nav class="main-nav">
+  <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+
+  <ul id="navMenu" class="menu">
+
+    <!-- 1. HOME -->
+    <li><a href="#">Home</a></li>
+
+    <!-- 2. FOUNDATION -->
+    <li class="has-sub">
+      <a href="#">Foundation</a>
+      <ul class="sub">
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Objectives</a></li>
+        <li><a href="#">History</a></li>
+        <li><a href="#">Constitution</a></li>
+        <li><a href="#">Timeline</a></li>
+      </ul>
+    </li>
+
+    <!-- 3. LINEAGE -->
+    <li class="has-sub">
+      <a href="#">Lineage</a>
+      <ul class="sub">
+        <li><a href="#">Goju-Ryu Origins</a></li>
+        <li><a href="#">Founder</a></li>
+        <li><a href="#">Lineage Chart</a></li>
+      </ul>
+    </li>
+
+    <!-- 4. OUR STYLE -->
+    <li class="has-sub">
+      <a href="#">Our Style</a>
+      <ul class="sub">
+        <li><a href="#">Goju-Ryu Overview</a></li>
+        <li><a href="#">Principles & Philosophy</a></li>
+        <li><a href="#">Kata</a></li>
+        <li><a href="#">Kumite</a></li>
+      </ul>
+    </li>
+
+    <!-- 5. ORGANISATION -->
+    <li class="has-sub">
+      <a href="#">Organisation</a>
+      <ul class="sub">
+        <li><a href="#">Committees & Boards</a></li>
+        <li><a href="#">Executive Members</a></li>
+        <li><a href="#">Instructors</a></li>
+        <li><a href="#">Black Belt Holders</a></li>
+      </ul>
+    </li>
+
+    <!-- 6. TRAINING -->
+    <li class="has-sub">
+      <a href="#">Training</a>
+      <ul class="sub">
+        <li><a href="#">Admission</a></li>
+        <li><a href="#">Training Structure</a></li>
+        <li><a href="#">Advance Curriculum</a></li>
+        <li><a href="#">Examinations</a></li>
+        <li><a href="#">Certification</a></li>
+        <li><a href="#">Running Batches</a></li>
+        <li><a href="#">Active Dojos</a></li>
+      </ul>
+    </li>
+
+    <!-- 7. notices and events -->
+    <li class="has-sub">
+    <a href="#">Notices & Events</a>
+      <ul class="sub">
+        <li><a href="#">Official Notices</a></li>
+        <li><a href="#">Announcements</a></li>
+        <li><a href="#">Camps & Seminars</a></li>
+        <li><a href="#">Dan Examinations</a></li>
+        <li><a href="#">Demonstrations</a></li>
+      </ul>
+    </li>
+
+    <!-- 8. MEDIA -->
+    <li class="has-sub">
+      <a href="#">Media</a>
+      <ul class="sub">
+        <li><a href="#">Articles</a></li>
+        <li><a href="#">Photo Gallery</a></li>
+        <li><a href="#">Video Gallery</a></li>
+        <li><a href="#">Archives</a></li>
+      </ul>
+    </li>
+
+    <!-- 9. CONTACT -->
+    <li class="has-sub">
+      <a href="#">Contact</a>
+      <ul class="sub">
+        <li><a href="#">Contact Information</a></li>
+        <li><a href="#">Training Enquiry</a></li>
+        <li><a href="#">Dojo Affiliation</a></li>
+        <li><a href="#">Instructor Registration</a></li>
+      </ul>
+    </li>
+
+  </ul>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-overlay">
+    <h2>Preserving the Authentic Okinawan Tradition of Goju-Ryu Karate-Do</h2>
+    <p>Discipline • Character • Lineage</p>
+  </div>
+</section>
+
+<section class="intro container">
+  <blockquote>
+    “Karate-Do is not merely a method of combat, but a disciplined path of life.”
+  </blockquote>
+  <p>
+    The West Bengal Goju-Ryu Karate-Do Foundation functions as the official
+    state-level body dedicated to the preservation, governance, and structured
+    propagation of traditional Goju-Ryu Karate-Do in West Bengal.
+  </p>
+
+  <div class="affiliation">
+    Affiliated with the <strong>All India Goju-Ryu Karate-Do Federation</strong>,
+    functioning as its recognised state-level organisation in West Bengal.
+  </div>
+</section>
+
+<section class="why-goju editorial">
+  <div class="container">
+
+    <h2>Why Goju-Ryu Karate-Do?</h2>
+    <span class="section-divider"></span>
+
+    <p class="lead">
+      Goju-Ryu Karate-Do is a traditional Okinawan martial art that teaches balance —
+      between strength and softness, power and control, action and calmness.
+      The word <strong>Goju</strong> itself means <em>Hard and Soft</em>, which forms the
+      foundation of this system.
+    </p>
+
+    <p>
+      Unlike styles that rely only on speed or physical strength, Goju-Ryu trains the
+      practitioner to respond appropriately to every situation. Strong, rooted stances
+      and decisive techniques are combined with relaxed movement, circular defence,
+      and controlled breathing.
+    </p>
+
+    <p>
+      This balance makes Goju-Ryu suitable for people of all ages and backgrounds.
+      Training is progressive and safe, allowing each student to grow at their own
+      pace while developing physical fitness, mental focus, and emotional stability.
+    </p>
+
+    <blockquote>
+     “Goju-Ryu teaches the harmony of hardness and softness. Hardness without control is weakness; 
+     softness without spirit is emptiness. By breath, strength is formed; by calmness, victory is achieved. 
+     Training begins in the body and is completed in the mind.”
+    </blockquote>
+
+    <p>
+      A defining feature of Goju-Ryu is its emphasis on kata and breathing-based
+      practice. These methods strengthen the body internally and externally,
+      improve posture and health, and cultivate calmness under pressure.
+    </p>
+
+    <p>
+      In modern life, where stress and imbalance are common, Goju-Ryu offers
+      stability and clarity. It builds confidence without aggression, discipline
+      without rigidity, and strength guided by ethics and respect.
+    </p>
+
+    <p class="closing">
+      At the West Bengal Goju-Ryu Karate-Do Foundation, Goju-Ryu is taught
+      as a complete traditional system — preserving its lineage while remaining
+      meaningful and practical in today’s world.
+    </p>
+
+  </div>
+</section>
+
+
+
+<section class="pillars">
+  <div class="section-inner">
+  <div class="pillar">
+    <h3>Traditional Lineage</h3>
+    <p>Authentic Okinawan Goju-Ryu philosophy and kata tradition.</p>
+  </div>
+  <div class="pillar">
+    <h3>Structured Certification</h3>
+    <p>Transparent Curriculums, examination boards, and grading discipline.</p>
+  </div>
+  <div class="pillar">
+    <h3>State Governance</h3>
+    <p>Committees, affiliated dojos, and technical supervision.</p>
+  </div>
+</div>
+</section>
+
+<section class="governance container">
+<h2>Organisation</h2>
+  <ul>
+    <li>State Executive Members</li>
+    <li>Technical & Examination Boards</li>
+    <li>Instructor & Dojo Affiliation System</li>
+  </ul>
+  <a href="#">View Organisation Structure →</a>
+</section>
+
+<section class="founder">
+ <div class="founder-inner">
+    <div class="founder-photo">
+      <img 
+        src="https://raw.githubusercontent.com/wgkf/home/main/Miyagi_Chojun.jpg"
+        alt="Chojun Miyagi, Founder of Goju-Ryu Karate-Do">
+    </div>
+  <h2>Founder of Goju-Ryu Karate-Do</h2>
+  <h3>Chojun Miyagi (1888–1953)</h3>
+  <p>
+    Goju-Ryu Karate-Do was founded in Okinawa by Master Chojun Miyagi,
+    combining hard and soft principles with controlled breathing,
+    kata practice, and moral discipline.
+  </p>
+  </div>
+</section>
+
+<section class="guidance container">
+  <h2>Technical Lineage & Guidance</h2>
+  <p>
+    The Foundation follows the traditional Goju-Ryu technical lineage under
+    senior guidance, ensuring authenticity in kata, kihon, breathing methods,
+    and ethical discipline across all affiliated dojos.
+  </p>
+</section>
+
+<section class="activities">
+   <div class="section-inner">
+  <h2>Activities & Events</h2>
+  <div class="activity-grid">
+    <div class="activity-card">Training Camp</div>
+    <div class="activity-card">Black Belt Seminar</div>
+    <div class="activity-card">Dan Examination</div>
+  </div>
+  </div>
+</section>
+
+<section class="notices container">
+  <h2>Notices & Announcements</h2>
+ <div class="notice-item">
+  <time datetime="2026-10-12">12 Oct 2026</time> – Dan Examination Registration Open
+</div>
+
+  <a href="#">View All Notices →</a>
+</section>
+
+
+<section class="statistics">
+  <div class="section-inner">
+    <h2>Foundation at a Glance</h2>
+    <p class="stats-subtitle">
+      Organised growth, certified practitioners, and structured governance across West Bengal
+    </p>
+
+    <div class="stats-grid">
+
+      <div class="stat-box">
+        <span class="stat-number">600+</span>
+        <span class="stat-label">Registered Practitioners</span>
+      </div>
+
+      <div class="stat-box">
+        <span class="stat-number">20+</span>
+        <span class="stat-label">Certified Black Belts</span>
+      </div>
+
+      <div class="stat-box">
+        <span class="stat-number">10</span>
+        <span class="stat-label">Affiliated Training Centres</span>
+      </div>
+
+      <div class="stat-box">
+        <span class="stat-number">5</span>
+        <span class="stat-label">Certified Instructors</span>
+      </div>
+
+      <div class="stat-box">
+        <span class="stat-number">15+</span>
+        <span class="stat-label">Years of Organised Activity</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<footer class="site-footer">
+  <div class="footer-inner">
+
+    <!-- Address / Identity -->
+    <div class="footer-block">
+      <h4>West Bengal Goju-Ryu Karate-Do Foundation</h4>
+      <p>9/A, S. N. PAUL ROAD<br>PO-ARIADAHA<br>KOLKATA -700057<br>WEST BENGAL, INDIA
+      </p>
+     
+      <p class="footer-email">
+        <i class="fa-solid fa-envelope"></i>
+        official.wgkf@gmail.com
+      </p>
+    </div>
+
+    <!-- Social Links -->
+    <div class="footer-block">
+      <h4>Connect With Us</h4>
+      <div class="footer-social">
+
+        <a href="https://www.facebook.com/people/West-Bengal-Goju-Ryu-Karate-Do-Foundation/100063912198186/" aria-label="Facebook">
+          <i class="fa-brands fa-facebook-f"></i>
+        </a>
+
+        <a href="#" aria-label="Instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+
+        <a href="#" aria-label="Telegram">
+          <i class="fa-brands fa-telegram"></i>
+        </a>
+
+        <a href="#" aria-label="WhatsApp">
+          <i class="fa-brands fa-whatsapp"></i>
+        </a>
+
+        <a href="mailto:official.wgkf@gmail.com" aria-label="Email">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © West Bengal Goju-Ryu Karate-Do Foundation · All Rights Reserved
+  </div>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const menu = document.getElementById("navMenu");
+  const menuBtn = document.querySelector(".menu-toggle");
+
+  /* Toggle main menu */
+  window.toggleMenu = function () {
+    if (!menu) return;
+
+    menu.classList.toggle("show");
+
+    if (!menu.classList.contains("show")) {
+      document.querySelectorAll(".has-sub").forEach(li => {
+        li.classList.remove("open");
+      });
+    }
+  };
+
+  /* Mobile submenu toggle */
+  document.querySelectorAll('.has-sub > a').forEach(link => {
+    link.addEventListener('click', function (e) {
+      if (window.matchMedia("(hover: none)").matches) {
+        e.preventDefault();
+
+        const parent = this.parentElement;
+
+        document.querySelectorAll(".has-sub").forEach(li => {
+          if (li !== parent) li.classList.remove("open");
+        });
+
+        parent.classList.toggle("open");
+      }
+    });
+  });
+
+  /* Reset menu on resize */
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768 && menu) {
+      menu.classList.remove("show");
+      document.querySelectorAll(".has-sub").forEach(li => {
+        li.classList.remove("open");
+      });
+    }
+  });
+
+  /* ================= THEME TOGGLE ================= */
+  const savedTheme = localStorage.getItem("wgkf-theme");
+  if (savedTheme === "night") {
+    document.body.classList.add("night");
+  }
+
+ window.toggleTheme = function () {
+  if (!document.body) return;
+
+  document.body.classList.toggle("night");
+  localStorage.setItem(
+    "wgkf-theme",
+    document.body.classList.contains("night") ? "night" : "day"
+  );
+};
+
+
+  /* ================= MOBILE SMART TAP ================= */
+  if (window.innerWidth <= 768) {
+
+    let hideTimer;
+    let startX = 0, startY = 0, startTime = 0;
+
+    const MOVE_THRESHOLD = 10;
+    const TIME_THRESHOLD = 300;
+
+    function showToggle() {
+      document.body.classList.add("show-theme-toggle");
+      clearTimeout(hideTimer);
+      hideTimer = setTimeout(() => {
+        document.body.classList.remove("show-theme-toggle");
+      }, 2500);
+    }
+
+    document.addEventListener("touchstart", function (e) {
+      if (
+        e.target.closest(
+          'a, button, input, textarea, select, label, form, nav, .menu-toggle, .has-sub, .sub, .theme-toggle'
+        )
+      ) return;
+
+      const t = e.touches[0];
+      startX = t.clientX;
+      startY = t.clientY;
+      startTime = Date.now();
+    }, { passive: true });
+
+    document.addEventListener("touchend", function (e) {
+      const t = e.changedTouches[0];
+      if (
+        Math.abs(t.clientX - startX) > MOVE_THRESHOLD ||
+        Math.abs(t.clientY - startY) > MOVE_THRESHOLD ||
+        Date.now() - startTime > TIME_THRESHOLD
+      ) return;
+
+      showToggle();
+    }, { passive: true });
+  }
+
+});
+</script>
+
+
+</body>
+</html>
