@@ -1616,6 +1616,60 @@ body.night .theme-toggle {
   }
 }
 
+/* ================= ANNOUNCEMENT RIBBON ================= */
+
+.announcement-ribbon {
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(180,140,60,0.18),
+    rgba(253,251,247,0.95),
+    rgba(180,140,60,0.18)
+  );
+  border-bottom: 1px solid var(--border-soft);
+  overflow: hidden;
+  font-family: 'Libre Baskerville', serif;
+}
+
+.announcement-track {
+  display: inline-block;
+  white-space: nowrap;
+  padding-left: 100%;
+  animation: announcement-scroll 22s linear infinite;
+  font-size: 14px;
+  color: var(--text-main);
+}
+
+.announcement-track span {
+  margin-right: 80px;
+  font-weight: 600;
+}
+
+/* Animation */
+@keyframes announcement-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+
+/* Hide when empty */
+.hidden {
+  display: none;
+}
+
+/* ================= NIGHT MODE ================= */
+body.night .announcement-ribbon {
+  background: linear-gradient(
+    90deg,
+    rgba(201,161,74,0.12),
+    rgba(15,15,15,0.95),
+    rgba(201,161,74,0.12)
+  );
+  border-bottom-color: var(--border-soft);
+}
+
+body.night .announcement-track {
+  color: var(--text-main);
+}
 
 </style>
 </head>
@@ -1741,6 +1795,11 @@ body.night .theme-toggle {
 
   </ul>
 </nav>
+
+<!-- ================= ANNOUNCEMENT RIBBON ================= -->
+<div id="announcementRibbon" class="announcement-ribbon hidden">
+  <div class="announcement-track" id="announcementTrack"></div>
+</div>
 
 
 <section class="hero">
@@ -1984,7 +2043,7 @@ body.night .theme-toggle {
   </div>
 </footer>
 
-<script>
+<script type="module">
 document.addEventListener("DOMContentLoaded", function () {
 
   const menu = document.getElementById("navMenu");
@@ -2090,6 +2149,45 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 });
+
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+const supabase = createClient(
+  "YOUR_SUPABASE_URL",
+  "YOUR_PUBLIC_ANON_KEY"
+);
+
+async function loadAnnouncements() {
+
+  const { data } = await supabase
+    .from("announcements")
+    .select("content")
+    .eq("is_active", true)
+    .or(`expires_at.is.null,expires_at.gt.${new Date().toISOString()}`)
+    .order("created_at", { ascending: false })
+    .limit(3);
+
+  if (!data || data.length === 0) return;
+
+  const ribbon = document.getElementById("announcementRibbon");
+  const track  = document.getElementById("announcementTrack");
+
+  track.innerHTML = data
+    .map(a => `<span>${escapeHTML(a.content)}</span>`)
+    .join("");
+
+  ribbon.classList.remove("hidden");
+}
+
+/* Security: prevent HTML injection */
+function escapeHTML(text) {
+  const div = document.createElement("div");
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+loadAnnouncements();
+
 </script>
 
 
