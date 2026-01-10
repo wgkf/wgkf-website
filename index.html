@@ -1615,6 +1615,31 @@ body.night .theme-toggle {
     background: #7a1e1e;
   }
 }
+/* =====================================================
+   DESKTOP EDGE-HIDDEN THEME TOGGLE (SAFE)
+   ===================================================== */
+@media (min-width: 769px) {
+
+  .theme-toggle {
+    position: fixed;
+    top: 18px;
+    right: -36px; /* hidden */
+    z-index: 2000;
+
+    background: rgba(28, 28, 28, 0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    padding: 8px 10px;
+    border-radius: 50%;
+    transition: right 0.25s ease;
+  }
+
+  body.show-theme-toggle .theme-toggle {
+  right: 16px;
+}
+
+}
 
 /* ================= ANNOUNCEMENT RIBBON ================= */
 
@@ -2109,49 +2134,70 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.classList.contains("night") ? "night" : "day"
   );
 };
+/* ================= UNIFIED SMART REVEAL (ALL DEVICES) ================= */
 
+let hideTimer;
+let startX = 0, startY = 0, startTime = 0;
 
-  /* ================= MOBILE SMART TAP ================= */
-  if (window.innerWidth <= 768) {
+const MOVE_THRESHOLD = 12;   // px
+const TIME_THRESHOLD = 350;  // ms
+const HIDE_DELAY = 2200;
 
-    let hideTimer;
-    let startX = 0, startY = 0, startTime = 0;
+function showThemeToggle() {
+  document.body.classList.add("show-theme-toggle");
 
-    const MOVE_THRESHOLD = 10;
-    const TIME_THRESHOLD = 300;
+  clearTimeout(hideTimer);
+  hideTimer = setTimeout(() => {
+    document.body.classList.remove("show-theme-toggle");
+  }, HIDE_DELAY);
+}
 
-    function showToggle() {
-      document.body.classList.add("show-theme-toggle");
-      clearTimeout(hideTimer);
-      hideTimer = setTimeout(() => {
-        document.body.classList.remove("show-theme-toggle");
-      }, 2500);
-    }
+function isOperationalTarget(target) {
+  return target.closest(
+    `
+    a,
+    button,
+    input,
+    textarea,
+    select,
+    label,
+    form,
+    nav,
+    .menu-toggle,
+    .has-sub,
+    .sub,
+    .theme-toggle
+    `
+  );
+}
 
-    document.addEventListener("touchstart", function (e) {
-      if (
-        e.target.closest(
-          'a, button, input, textarea, select, label, form, nav, .menu-toggle, .has-sub, .sub, .theme-toggle'
-        )
-      ) return;
+/* ---- TOUCH (mobile & tablets) ---- */
+document.addEventListener("touchstart", e => {
+  const t = e.touches[0];
+  startX = t.clientX;
+  startY = t.clientY;
+  startTime = Date.now();
+}, { passive: true });
 
-      const t = e.touches[0];
-      startX = t.clientX;
-      startY = t.clientY;
-      startTime = Date.now();
-    }, { passive: true });
+document.addEventListener("touchend", e => {
+  const t = e.changedTouches[0];
 
-    document.addEventListener("touchend", function (e) {
-      const t = e.changedTouches[0];
-      if (
-        Math.abs(t.clientX - startX) > MOVE_THRESHOLD ||
-        Math.abs(t.clientY - startY) > MOVE_THRESHOLD ||
-        Date.now() - startTime > TIME_THRESHOLD
-      ) return;
+  if (
+    Math.abs(t.clientX - startX) > MOVE_THRESHOLD ||
+    Math.abs(t.clientY - startY) > MOVE_THRESHOLD ||
+    Date.now() - startTime > TIME_THRESHOLD
+  ) return;
 
-      showToggle();
-    }, { passive: true });
-  }
+  if (isOperationalTarget(e.target)) return;
+
+  showThemeToggle();
+}, { passive: true });
+
+/* ---- CLICK (desktop & laptops) ---- */
+document.addEventListener("click", e => {
+  if (isOperationalTarget(e.target)) return;
+  showThemeToggle();
+});
 
 });
 
