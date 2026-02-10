@@ -342,12 +342,10 @@ body.night .theme-toggle i::before {
 .why-goju .lead {
   font-size: 17px;
   line-height: 1.9;
-  max-width: 820px;
   margin-bottom: 22px;
 }
 
 .why-goju p {
-  max-width: 820px;
   font-size: 15.5px;
   line-height: 1.8;
   margin-bottom: 18px;
@@ -1703,6 +1701,20 @@ body.night .announcement-track {
 .menu {
   flex-wrap: wrap;
 }
+@media (min-width: 992px) {
+  .why-goju .container {
+    max-width: 960px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+@media (min-width: 992px) {
+  .why-goju blockquote {
+    max-width: 880px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
 
 </style>
 </head>
@@ -2241,4 +2253,3 @@ loadAnnouncements();
 
 </body>
 </html>
-
