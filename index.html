@@ -312,11 +312,19 @@ body.night .theme-toggle i::before {
   padding-right: 20px;
 }
 /* ================= WHY GOJU-RYU ================= */
+
+/* ================= WHY GOJU-RYU – BOXED LIKE ORGANISATION ================= */
+
 .why-goju.editorial {
+  padding: 60px 0;   /* space around the box */
+  background: transparent;
+}
+
+.why-goju .container {
   background: rgba(253, 251, 247, 0.9);
-  border-top: 1px solid #e6e0d3;
-  border-bottom: 1px solid #e6e0d3;
-  padding: 70px 0;
+  border: 1px solid var(--border-soft);
+  padding: 70px 20px;
+  box-sizing: border-box;
 }
 
 .why-goju h2 {
@@ -421,9 +429,6 @@ body.night .theme-toggle i::before {
 
 /* Mobile */
 @media (max-width: 768px) {
-  .why-goju.editorial {
-    padding: 50px 0;
-  }
 
   .why-goju h2 {
     font-size: 24px;
@@ -434,28 +439,9 @@ body.night .theme-toggle i::before {
   }
 }
 /* ================= WHY GOJU-RYU – DESKTOP BACKGROUND CONTAINMENT ================= */
-@media (min-width: 992px) {
 
-  .why-goju.editorial {
-    max-width: 1100px;        /* same as container */
-    margin: 0px auto;        /* centers the section */
-    padding: 10px 40px;       /* inner breathing space */
-    box-sizing: border-box;
-  }
-
-}
 /* ================= WHY GOJU-RYU – DESKTOP CONTENT BALANCE ================= */
-@media (min-width: 992px) {
-
-  .why-goju .lead,
-  .why-goju p,
-  .why-goju blockquote,
-  .why-goju .closing {
-    max-width: 960px;        /* wider, but controlled */
-    margin-left: auto;      /* center the column */
-    margin-right: auto;
-  }
-
+@media (min-width: 960px) {
   .why-goju blockquote {
     max-width: 900px;       /* quote slightly tighter */
   }
@@ -464,10 +450,6 @@ body.night .theme-toggle i::before {
 
 /* ================= WHY GOJU-RYU – MOBILE REFINEMENT ================= */
 @media (max-width: 768px) {
-
-  .why-goju.editorial {
-    padding: 32px 0;   /* reduced from 50 */
-  }
 
   .why-goju h2 {
     font-size: 22px;
@@ -515,18 +497,10 @@ body.night .theme-toggle i::before {
     padding-top: 16px;   /* was ~40px */
   }
 }
-@media (max-width: 768px) {
-  .why-goju.editorial {
-    padding-top: 20px;   /* was 32px */
-  }
-}
+
 /* ================= WHY GOJU-RYU – MOBILE BOTTOM SPACING FIX ================= */
 @media (max-width: 768px) {
 
-  /* Reduce section bottom padding */
-  .why-goju.editorial {
-    padding-bottom: 20px;   /* reduced */
-  }
 
   /* Reduce container bottom padding */
   .why-goju .container {
@@ -701,7 +675,7 @@ body.night .theme-toggle i::before {
 }
 
 /* ================= FOUNDER – DESKTOP CONTAINMENT ================= */
-@media (min-width: 992px) {
+@media (min-width: 960px) {
 
   .founder {
     max-width: 1100px;   /* same as container */
@@ -915,7 +889,7 @@ footer {
   }
 }
 /* ================= UNIFIED DESKTOP WIDTH ================= */
-@media (min-width: 992px) {
+@media (min-width: 960px) {
 
   .governance.container,
   .guidance.container,
@@ -1076,7 +1050,7 @@ footer {
   font-size: 13px;
   color: #aaa;
 }
-@media (min-width: 992px) {
+@media (min-width: 960px) {
   .footer-inner {
     padding: 10px 20px; /* reduced from 50px */
   }
@@ -1395,14 +1369,7 @@ footer {
   }
 
 }
-/* ================= SLIGHT SPACE AFTER EDITORIAL BLOCKS (DESKTOP) ================= */
-@media (min-width: 992px) {
 
-  .why-goju.editorial {
-    margin-bottom: 40px; /* subtle, clean separation */
-  }
-
-}
 /* =====================================================
    NIGHT MODE — SOOTHING & PREMIUM ENHANCEMENTS
    (Day design untouched)
@@ -1701,18 +1668,104 @@ body.night .announcement-track {
 .menu {
   flex-wrap: wrap;
 }
-@media (min-width: 992px) {
-  .why-goju .container {
-    max-width: 960px;
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
-@media (min-width: 992px) {
+
+@media (min-width: 960px) {
   .why-goju blockquote {
     max-width: 880px;
     margin-left: auto;
     margin-right: auto;
+  }
+}
+/* =====================================================
+   WHY GOJU-RYU – DESKTOP / LAPTOP SPACING NORMALIZATION
+   ===================================================== */
+@media (min-width: 769px) {
+
+  /* Equal space above & below (matches other sections) */
+  .why-goju.editorial {
+    padding-top: 0px;
+    padding-bottom: 40px;
+    margin: 0;              /* prevent stacking gaps */
+  }
+
+  /* Internal box spacing – balanced */
+  .why-goju .container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+}
+/* =====================================================
+   WHY GOJU-RYU – MOBILE SPACING (SINGLE SOURCE)
+   ===================================================== */
+@media (max-width: 768px) {
+
+  .why-goju.editorial {
+    padding: 10px 0;
+  }
+
+  .why-goju .container {
+    padding: 28px 16px;
+  }
+
+}
+/* =====================================================
+   DESKTOP NAV – FORCE SINGLE LINE
+   ===================================================== */
+@media (min-width: 960px) {
+
+  .menu {
+    flex-wrap: nowrap;   /* 🔑 prevents breaking */
+    justify-content: space-between;
+  }
+
+}
+@media (min-width: 960px) {
+
+  .main-nav a {
+    padding: 14px 14px;   /* reduced from 20px */
+    font-size: 14px;      /* slight tightening */
+    white-space: nowrap;  /* 🔑 prevents label break */
+  }
+
+}
+/* =====================================================
+   DESKTOP NAV – FIX LAST SUBMENU OVERFLOW
+   ===================================================== */
+@media (min-width: 960px) {
+
+  .menu > .has-sub:last-child .sub {
+    left: auto;
+    right: 0;   /* 🔑 open inward */
+  }
+
+}
+/* =====================================================
+   DESKTOP SUBMENU – AUTO WIDTH BASED ON TEXT
+   ===================================================== */
+@media (min-width: 960px) {
+
+  .sub {
+    min-width: unset;          /* remove forced width */
+    width: max-content;        /* 🔑 fit to text */
+    max-width: 320px;          /* safety cap */
+    white-space: nowrap;       /* prevent wrapping */
+  }
+
+}
+@media (min-width: 960px) {
+
+  .sub li a {
+    white-space: nowrap;
+  }
+
+}
+@media (max-width: 768px) {
+  .sub {
+    position: static;
+    width: 100%;
+    max-width: none;
+    white-space: normal;
   }
 }
 
@@ -1869,7 +1922,6 @@ body.night .announcement-track {
     functioning as its recognised state-level organisation in West Bengal.
   </div>
 </section>
-
 <section class="why-goju editorial">
   <div class="container">
 
