@@ -1504,6 +1504,50 @@ body.night .statistics {
 body.night .stat-number {
   color: var(--text-invert);
 }
+/* =====================================================
+   STATISTICS — CENTERED HIGHLIGHT BOX (DESKTOP)
+   ===================================================== */
+
+@media (min-width: 960px) {
+
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .stat-highlight {
+    grid-column: 1 / -1;          /* spans full row */
+    max-width: 360px;             /* prevents over-width */
+    margin: 0 auto;  
+        margin-top: 12px;
+             /* perfect centering */
+  }
+
+}
+/* Highlight styling */
+.stat-highlight {
+  position: relative;
+  border-width: 2px;
+}
+
+.stat-highlight .stat-number {
+  font-size: 40px;
+}
+
+.stat-highlight::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-gold),
+    transparent
+  );
+}
 
 /* ---------- FOOTER (DEEP & QUIET) ---------- */
 body.night .site-footer {
@@ -1703,9 +1747,6 @@ body.night .announcement-track {
     animation-play-state: paused;
   }
 }
-.menu {
-  flex-wrap: wrap;
-}
 
 @media (min-width: 960px) {
   .why-goju blockquote {
@@ -1812,6 +1853,20 @@ body.night .announcement-track {
   padding-bottom: 10px;
 }
 }
+
+/* =====================================================
+   NIGHT MODE — RESTORE CONTAINER BORDERS (CRITICAL FIX)
+   ===================================================== */
+
+body.night .governance.container,
+body.night .guidance.container,
+body.night .notices.container,
+body.night .pillar,
+body.night .activities .section-inner {
+  border: 1px solid var(--border-soft);
+  background: var(--bg-soft);
+}
+
 </style>
 </head>
 
@@ -2105,27 +2160,27 @@ body.night .announcement-track {
 
       <div class="stat-box">
       <span class="stat-number" data-count="6000">0+</span>
-        <span class="stat-label">Registered Practitioners</span>
+      <span class="stat-label">Registered Practitioners</span>
       </div>
 
       <div class="stat-box">
       <span class="stat-number" data-count="50">0+</span>
-        <span class="stat-label">Certified Black Belts</span>
+      <span class="stat-label">Certified Black Belts</span>
       </div>
 
       <div class="stat-box">
       <span class="stat-number" data-count="10">0</span>
-        <span class="stat-label">Affiliated Training Centres</span>
+      <span class="stat-label">Affiliated Training Centres</span>
       </div>
 
       <div class="stat-box">
       <span class="stat-number" data-count="15">0</span>
-        <span class="stat-label">Certified Instructors</span>
+      <span class="stat-label">Certified Instructors</span>
       </div>
 
-      <div class="stat-box">
+      <div class="stat-box stat-highlight">
       <span class="stat-number" data-count="15">0+</span>
-        <span class="stat-label">Years of Organised Activity</span>
+      <span class="stat-label">Years of Organised Activity</span>
       </div>
 
     </div>
