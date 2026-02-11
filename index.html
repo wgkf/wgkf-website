@@ -791,8 +791,14 @@ body.night .theme-toggle i::before {
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
   gap: 24px;
+}
+
+/* Desktop & Laptop */
+@media (min-width: 960px) {
+  .stats-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
 }
 
 .stat-box {
@@ -1504,50 +1510,6 @@ body.night .statistics {
 body.night .stat-number {
   color: var(--text-invert);
 }
-/* =====================================================
-   STATISTICS — CENTERED HIGHLIGHT BOX (DESKTOP)
-   ===================================================== */
-
-@media (min-width: 960px) {
-
-  .stats-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .stat-highlight {
-    grid-column: 1 / -1;          /* spans full row */
-    max-width: 360px;             /* prevents over-width */
-    margin: 0 auto;  
-        margin-top: 12px;
-             /* perfect centering */
-  }
-
-}
-/* Highlight styling */
-.stat-highlight {
-  position: relative;
-  border-width: 2px;
-}
-
-.stat-highlight .stat-number {
-  font-size: 40px;
-}
-
-.stat-highlight::before {
-  content: "";
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120px;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--accent-gold),
-    transparent
-  );
-}
 
 /* ---------- FOOTER (DEEP & QUIET) ---------- */
 body.night .site-footer {
@@ -2178,7 +2140,7 @@ body.night .activities .section-inner {
       <span class="stat-label">Certified Instructors</span>
       </div>
 
-      <div class="stat-box stat-highlight">
+      <div class="stat-box">
       <span class="stat-number" data-count="15">0+</span>
       <span class="stat-label">Years of Organised Activity</span>
       </div>
