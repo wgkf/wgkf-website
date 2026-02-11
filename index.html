@@ -1107,7 +1107,6 @@ footer {
   .footer-email {
     margin-top: 6px;
   }
-  @media (max-width: 768px) {
 
   .footer-social a {
     width: 36px;
@@ -1116,17 +1115,7 @@ footer {
   }
 
 }
-@media (max-width: 768px) {
 
-  .footer-bottom {
-    padding: 12px 8px;
-    font-size: 12.5px;
-  }
-
-}
-
-
-}
 
 /* =====================================================
    MOBILE-FIRST REFINEMENTS (NON-DESTRUCTIVE)
@@ -1151,6 +1140,12 @@ footer {
   .org-name p {
     font-size: 13px;
   }
+}
+/* ================= MOBILE TAP PREVIEW ================= */
+.footer-social a.tap-preview {
+  background: var(--tap-bg);
+  border-color: var(--tap-bg);
+  color: #fff;
 }
 
 /* ---------- NAVIGATION (TOUCH FRIENDLY) ---------- */
@@ -2315,6 +2310,48 @@ document.addEventListener("touchend", e => {
 
   showThemeToggle();
 }, { passive: true });
+
+
+document.querySelectorAll(".footer-social a").forEach(link => {
+  link.addEventListener("touchstart", e => {
+    const href = link.getAttribute("href");
+    if (!href) return;
+
+    e.preventDefault(); // allow colour to render
+
+    const colors = {
+      Facebook: "#1877F2",
+      Instagram: "#dc2743",
+      Telegram: "#229ED9",
+      WhatsApp: "#25D366",
+      Youtube: "#FF0000",
+      Email: "#4a4a4a"
+    };
+
+    const label = link.getAttribute("aria-label");
+    const color = colors[label];
+    if (!color) {
+      window.location.href = href;
+      return;
+    }
+
+    link.style.setProperty("--tap-bg", color);
+    link.classList.add("tap-preview");
+
+    // short delay so user SEES the colour
+   setTimeout(() => {
+  link.classList.remove("tap-preview");
+
+  if (link.target === "_blank") {
+    window.open(href, "_blank", "noopener,noreferrer");
+  } else {
+    window.location.href = href;
+  }
+
+}, 120);
+// sweet spot
+  }, { passive: false });
+});
 
 /* ---- CLICK (desktop & laptops) ---- */
 document.addEventListener("click", e => {
